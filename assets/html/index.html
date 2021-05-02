@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | Find&Post User Cover Photo to Page's Wall</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/style.css"/>
+</head>
+<body>
+    <div class="container">
+        <form method="POST">
+            <div class="form-group">
+            <label for="pageIdInput">Page ID:</label>
+            <input type="text" class="form-control" name="pageId" id="pageIdInput" placeholder="109960724577650" required>
+            </div>
+            <div class="form-group">
+            <label for="uidList">Danh sách UID/username:</label>
+            <textarea class="form-control" name="uidList"  id="uidList" rows="10" required></textarea>
+            </div>
+            <div class="form-group">
+            <label for="breakPeriodInput">Thời gian dừng giữa các task (millisecond):</label>
+            <input type="number" class="form-control" name="breakPeriod"  id="breakPeriodInput" value="0" required>
+            </div>
+            <div class="form-group">
+            <label>Thời gian hoạt động trong ngày:</label><br/>
+            <label for="activePeriodInputFrom">Từ: </label>
+            <input type="time" class="form-control w-auto d-inline-block" name="activePeriodStart"  id="activePeriodInputFrom" value="00:00" required><br/>
+            <label for="activePeriodInputTo">Đến: </label>
+            <input type="time" class="form-control w-auto d-inline-block" name="activePeriodEnd"  id="activePeriodInputTo" value="23:59" required><br/>
+            </div>
+            <div class="form-group">
+            <label for="randomUidListInput">Danh sách chọn random UID/username:</label>
+            <textarea class="form-control" name="randomUidList"  id="randomUidListInput" rows="10"></textarea>
+            </div>
+            <div class="form-group d-flex justify-content-around">
+                <button class="btn btn-primary">Bắt đầu</button>
+                <button class="btn btn-secondary">Hủy</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="../js/fb.js"></script>
+    <script>
+        const form = document.querySelector('form');
+        const inputs = [...document.querySelectorAll('input')];
+        const tareas = [...document.querySelectorAll('textarea')];
+
+        form.addEventListener('submit',function(event){
+            processInputs(0);
+            event.preventDefault();
+            event.stopPropagation();
+        })
+        function processInputs(indx){
+            let uidList = document.querySelector('#uidList').value.split('\n');
+            if(indx>=0 && indx<uidList.length){
+                uid = uidList[indx];
+                formData = new URLSearchParams();
+                inputs.forEach(input=>{
+                    formData.append(input.getAttribute('name'),input.value);
+                });
+                formData.append('uid',uid);
+                formData.append(tareas[1].getAttribute('name'),tareas[1].value);
+                fetch('/',{
+                    method:'POST',
+                    body:formData
+                }).then(res=>{
+                    console.log(res);
+                    processInputs(indx+1);
+                }).catch(e=>console.log(err));
+            }
+        }
+    </script>
+</body>
+</html>
