@@ -1,14 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
-var scrape = require('../scrape.js');
-var scrawler = new scrape.Scrawler();
-// scrawler.init();
 const sleep = require('util').promisify(setTimeout);
 
 // Home page route.
 router.get('/',function(req,res){
     res.sendFile(path.resolve(__dirname,'../assets/html/index.html'));
+    console.log(req.app.scrawler);
 })
 
 router.post('/', async function(req,res){
@@ -16,9 +14,16 @@ router.post('/', async function(req,res){
     let uid = req.body.uid;
     let userUrl = 'https://facebook.com/'+uid;
     console.log(userUrl);
-    // let link = await scrawler.solve(userUrl);
-    await sleep(3000);
-    res.send('OK');
+    let msg = 'OK';
+    try{
+        let link = await req.app.scrawler.solve(userUrl);
+        msg = link;
+    } catch(err){
+        console.log('Error:',err);
+        msg = JSON.stringify(err);
+    }
+    console.log(msg);
+    res.send(msg);
 })
 
 

@@ -1,8 +1,14 @@
 const express = require('express'); 
 const bodyParser = require('body-parser');
-const indexRouter = require('./routers/index.js')
+const indexRouter = require('./routers/index.js');
+
+var {Scrawler} = require('./scrape.js');
+var scrawler = new Scrawler();
+scrawler.init();
 
 const app = express(); 
+app.scrawler = scrawler;
+
 const port = 4321; 
 
 app.use(express.json()) // for parsing application/json

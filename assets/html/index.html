@@ -67,7 +67,8 @@
                 }).then(res=>{
                     console.log(res);
                     processInputs(indx+1);
-                }).catch(e=>console.log(err));
+                    return res.text();
+                }).catch(e=>console.log(e)).then(body=>console.log(body));
             }
         }
     </script>
