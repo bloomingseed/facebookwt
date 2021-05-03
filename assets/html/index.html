@@ -47,6 +47,9 @@
         const tareas = [...document.querySelectorAll('textarea')];
 
         form.addEventListener('submit',function(event){
+            if(pageInfo){
+                pageInfo.id = inputs[0].value;
+            }
             processInputs(0);
             event.preventDefault();
             event.stopPropagation();
@@ -68,9 +71,15 @@
                     console.log(res);
                     processInputs(indx+1);
                     return res.text();
-                }).catch(e=>console.log(e)).then(body=>console.log(body));
+                }).catch(e=>console.log(e)).then(body=>{
+                    console.log(body);
+                    if(FB && postImageUrl && pageInfo){
+                        postImageUrl(FB,pageInfo,body);
+                    }
+                });
             }
         }
+        initFacebookApi();
     </script>
 </body>
 </html>

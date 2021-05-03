@@ -11,30 +11,31 @@ var pageInfo = {
     id:'109960724577650'
 }
 
+function initFacebookApi(){
+    window.fbAsyncInit = function() {
+        FB.init({
+        appId      : `${appInfo.id}`,
+        cookie     : true,
+        xfbml      : true,
+        version    : `${apiConfig.version}`
+        });
+        
+        
+    FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+    }); 
+        globalThis.FB = FB;
+        
+    };
 
-window.fbAsyncInit = function() {
-    FB.init({
-    appId      : `${appInfo.id}`,
-    cookie     : true,
-    xfbml      : true,
-    version    : `${apiConfig.version}`
-    });
-    
-    
-FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-}); 
-
-    
-};
-
-(function(d, s, id){
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) {return;}
-    js = d.createElement(s); js.id = id;
-    js.src = "https://connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+}
 
 function statusChangeCallback(response){
     if(response.status==='connected'){
@@ -59,10 +60,10 @@ function statusChangeCallback(response){
 //     });
 // }
 
-function postImageUrl(img_url){
-    let endpoint = `/${pageInfo.id}/feed`;
+function postImageUrl(FB,pageInfo,imgUrl){
+    let endpoint = `/${pageInfo.id}/photos`;
     console.log(FB.api(endpoint,'POST',{
-        link:encodeURI(url),
+        url:encodeURI(imgUrl),
         access_token:pageInfo['access_token']
     }, function(response){
             console.log(response);
