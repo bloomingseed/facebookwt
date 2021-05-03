@@ -49,8 +49,7 @@ function statusChangeCallback(response){
         console.log('User authenticated');
         token = response.authResponse.accessToken;
         console.log('User Access Token: ',token);
-        globalThis.pageAccessToken = token;
-        url = 'https://i.redd.it/u9v1bvq0j6611.jpg';    // replace this with the facebook cover img
+        globalThis.authenticated = true;
         getLongLivedUserAccessToken(token);
         // testGraphApi();
     } else{
