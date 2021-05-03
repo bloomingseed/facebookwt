@@ -23,12 +23,17 @@
             <input type="number" class="form-control" name="breakPeriod"  id="breakPeriodInput" value="0" required>
             </div>
             <div class="form-group">
-            <label>Thời gian hoạt động trong ngày:</label><br/>
-            <label for="activePeriodInputFrom">Từ: </label>
-            <input type="time" class="form-control w-auto d-inline-block" name="activePeriodStart"  id="activePeriodInputFrom" value="00:00" required><br/>
-            <label for="activePeriodInputTo">Đến: </label>
-            <input type="time" class="form-control w-auto d-inline-block" name="activePeriodEnd"  id="activePeriodInputTo" value="23:59" required><br/>
+            <label for="existInactivePeriodInput">Thời gian ngưng hoạt động trong ngày:</label>
+            <input type="checkbox" checked="false" id="existInactivePeriodInput" name="existInactivePeriod"><br/>
+            <label for="inactivePeriodFromFrom">Từ: </label>
+            <input type="time" class="form-control w-auto d-inline-block" name="inactivePeriodFrom"  id="inactivePeriodFromInput" value="00:00" disabled><br/>
+            <label for="inactivePeriodToFrom">Đến: </label>
+            <input type="time" class="form-control w-auto d-inline-block" name="inactivePeriodTo"  id="inactivePeriodToInput" value="23:59" disabled><br/>
             </div>
+            <div class="form-group">
+                <label for="taskThresholdInput">Chọn random sau số task là:</label>
+                <input type="number" name="taskThreshold" id="taskThresholdInput" value="-1" required>
+                </div>
             <div class="form-group">
             <label for="randomUidListInput">Danh sách chọn random UID/username:</label>
             <textarea class="form-control" name="randomUidList"  id="randomUidListInput" rows="10"></textarea>
@@ -41,45 +46,6 @@
     </div>
 
     <script src="../js/fb.js"></script>
-    <script>
-        const form = document.querySelector('form');
-        const inputs = [...document.querySelectorAll('input')];
-        const tareas = [...document.querySelectorAll('textarea')];
-
-        form.addEventListener('submit',function(event){
-            if(pageInfo){
-                pageInfo.id = inputs[0].value;
-            }
-            processInputs(0);
-            event.preventDefault();
-            event.stopPropagation();
-        })
-        function processInputs(indx){
-            let uidList = document.querySelector('#uidList').value.split('\n');
-            if(indx>=0 && indx<uidList.length){
-                uid = uidList[indx];
-                formData = new URLSearchParams();
-                inputs.forEach(input=>{
-                    formData.append(input.getAttribute('name'),input.value);
-                });
-                formData.append('uid',uid);
-                formData.append(tareas[1].getAttribute('name'),tareas[1].value);
-                fetch('/',{
-                    method:'POST',
-                    body:formData
-                }).then(res=>{
-                    console.log(res);
-                    processInputs(indx+1);
-                    return res.text();
-                }).catch(e=>console.log(e)).then(body=>{
-                    console.log(body);
-                    if(FB && postImageUrl && pageInfo){
-                        postImageUrl(FB,pageInfo,body);
-                    }
-                });
-            }
-        }
-        initFacebookApi();
-    </script>
+    <script src="../js/client.js"></script>
 </body>
 </html>
