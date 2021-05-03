@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="../css/style.css"/>
 </head>
 <body>
+    <div class="container-fluid">
+        <div class="alert alert-primary" role="alert">
+            Xin chào, đây là trang Admin Panel | Find&Post User Cover Photo to Page's Wall
+          </div>
+    </div>
     <div class="container">
         <form method="POST">
             <div class="form-group">
@@ -24,12 +29,21 @@
                 <input type="number" class="form-control" name="breakPeriod"  id="breakPeriodInput" value="0" required>
             </div>
             <div class="form-group">
-                <label for="existInactivePeriodInput">Thời gian ngưng hoạt động trong ngày:</label>
-                <input type="checkbox" id="existInactivePeriodInput" name="existInactivePeriod"><br/>
-                <label for="inactivePeriodFromFrom">Từ: </label>
-                <input type="time" class="form-control w-auto d-inline-block" name="inactivePeriodFrom"  id="inactivePeriodFromInput" value="00:00" disabled><br/>
-                <label for="inactivePeriodToFrom">Đến: </label>
-                <input type="time" class="form-control w-auto d-inline-block" name="inactivePeriodTo"  id="inactivePeriodToInput" value="23:59" disabled><br/>
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label pr-3" for="existInactivePeriodInput">Thời gian ngưng hoạt động trong ngày:</label>
+                    <input class = "form-check-input" type="checkbox" id="existInactivePeriodInput" name="existInactivePeriod"><br/>
+                    <label class="form-check-label" for="existInactivePeriodInput">Yes</label>
+                </div>
+                <div class="d-flex">
+                    <div class="col">
+                        <label for="inactivePeriodFromFrom">Từ: </label>
+                        <input type="time" class="form-control w-auto d-inline-block" name="inactivePeriodFrom"  id="inactivePeriodFromInput" value="00:00" disabled>
+                    </div>
+                    <div class="col">
+                        <label for="inactivePeriodToFrom">Đến: </label>
+                        <input type="time" class="form-control w-auto d-inline-block" name="inactivePeriodTo"  id="inactivePeriodToInput" value="23:59" disabled><br/>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <label for="taskThresholdInput">Chọn random sau số task là:</label>
