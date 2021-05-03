@@ -11,32 +11,34 @@
     <div class="container">
         <form method="POST">
             <div class="form-group">
-            <label for="pageIdInput">Page ID:</label>
-            <input type="text" class="form-control" name="pageId" id="pageIdInput" placeholder="109960724577650" required>
+                <label for="pageIdInput">Page ID:</label>
+                <input type="text" class="form-control" name="pageId" id="pageIdInput" placeholder="109960724577650" required>
             </div>
             <div class="form-group">
-            <label for="uidList">Danh sách UID/username:</label>
-            <textarea class="form-control" name="uidList"  id="uidList" rows="10" required></textarea>
+                <label for="uidList">Danh sách UID/username:</label>
+                <textarea class="form-control" name="uidList" id="uidList" rows="10" required></textarea>
+                <!-- <label class="textarea-counter" for="randomUidListInput">Số task: 0</label> -->
             </div>
             <div class="form-group">
-            <label for="breakPeriodInput">Thời gian dừng giữa các task (millisecond):</label>
-            <input type="number" class="form-control" name="breakPeriod"  id="breakPeriodInput" value="0" required>
+                <label for="breakPeriodInput">Thời gian dừng giữa các task (millisecond):</label>
+                <input type="number" class="form-control" name="breakPeriod"  id="breakPeriodInput" value="0" required>
             </div>
             <div class="form-group">
-            <label for="existInactivePeriodInput">Thời gian ngưng hoạt động trong ngày:</label>
-            <input type="checkbox" checked="false" id="existInactivePeriodInput" name="existInactivePeriod"><br/>
-            <label for="inactivePeriodFromFrom">Từ: </label>
-            <input type="time" class="form-control w-auto d-inline-block" name="inactivePeriodFrom"  id="inactivePeriodFromInput" value="00:00" disabled><br/>
-            <label for="inactivePeriodToFrom">Đến: </label>
-            <input type="time" class="form-control w-auto d-inline-block" name="inactivePeriodTo"  id="inactivePeriodToInput" value="23:59" disabled><br/>
+                <label for="existInactivePeriodInput">Thời gian ngưng hoạt động trong ngày:</label>
+                <input type="checkbox" id="existInactivePeriodInput" name="existInactivePeriod"><br/>
+                <label for="inactivePeriodFromFrom">Từ: </label>
+                <input type="time" class="form-control w-auto d-inline-block" name="inactivePeriodFrom"  id="inactivePeriodFromInput" value="00:00" disabled><br/>
+                <label for="inactivePeriodToFrom">Đến: </label>
+                <input type="time" class="form-control w-auto d-inline-block" name="inactivePeriodTo"  id="inactivePeriodToInput" value="23:59" disabled><br/>
             </div>
             <div class="form-group">
                 <label for="taskThresholdInput">Chọn random sau số task là:</label>
-                <input type="number" name="taskThreshold" id="taskThresholdInput" value="-1" required>
-                </div>
+                <input type="number" name="taskThreshold" id="taskThresholdInput" value="0" required>
+            </div>
             <div class="form-group">
-            <label for="randomUidListInput">Danh sách chọn random UID/username:</label>
-            <textarea class="form-control" name="randomUidList"  id="randomUidListInput" rows="10"></textarea>
+                <label for="randomUidListInput">Danh sách chọn random UID/username:</label>
+                <textarea class="form-control" name="randomUidList"  id="randomUidListInput" rows="10"></textarea>
+                <!-- <label class="textarea-counter" for="randomUidListInput">Số task: 0</label> -->
             </div>
             <div class="form-group d-flex justify-content-around">
                 <button class="btn btn-primary">Bắt đầu</button>

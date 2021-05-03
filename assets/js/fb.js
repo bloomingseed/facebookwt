@@ -22,7 +22,14 @@ function initFacebookApi(){
         
         
     FB.getLoginStatus(function(response) {
-        statusChangeCallback(response);
+        if(response.status!='connected'){
+            let permissionConfig = {
+                scope:'pages_show_list,pages_read_engagement,pages_manage_posts,public_profile'
+            }
+            FB.login(statusChangeCallback,permissionConfig);
+        } else{
+            statusChangeCallback(response);
+        }
     }); 
         globalThis.FB = FB;
         
@@ -47,10 +54,7 @@ function statusChangeCallback(response){
         getLongLivedUserAccessToken(token);
         // testGraphApi();
     } else{
-        let permissionConfig = {
-            scope:'pages_show_list,pages_read_engagement,pages_manage_posts,public_profile'
-        }
-        FB.login(statusChangeCallback,permissionConfig);
+        alert('Xác minh Facebook thất bại. Hãy tải lại trang để thử lại xác minh.')
     }
 }
     
