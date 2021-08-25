@@ -3,7 +3,7 @@
     - Nếu hiện thị ra 1 dòng như `v12.18.3` là được. 
     - Nếu không cần phải cài đặt [NodeJS](https://nodejs.org/en/) trước. (Sau khi cài mới phải bật lại cửa sổ cmd khác).
 2. Cài đặt các dependencies: 
-    - Mở cửa sổ cmd tại thư mục chứa tool và chạy lệnh `npm install --ignore-script` để cài đặt các dependencies.
+    - Nhấp đúp chuột vào file `install.bat` để nhanh chóng cài đặt các thành phần liên quan.
 3. Nhanh chóng sử dụng ứng dụng: Nhấp đúp chuột vào file `start_here.bat`. (không được đóng cửa sổ `cmd.exe` vừa mở lên).
 `
 # Hướng dẫn sử dụng:

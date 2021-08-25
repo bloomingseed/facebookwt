@@ -24,7 +24,7 @@
      - Truy cập [trang chủ của NodeJS](https://nodejs.org/en/), sau đó ấn vào nút xanh lục có dòng chữ "Recommended For Most Users" để tải về.
      - Tải xong thì mở ra và cài đặt bình thường. Nếu không rành chỉ cần click Next tới hết là OK rồi.
      - Kiểm tra phiên bản NodeJS trong máy tính như ở trên. **Lưu ý** là cần phải mở cửa sổ `cmd.exe` mới thì mới có hiệu lực.
-- Mở cửa sổ cmd tại thư mục chứa tool và chạy lệnh `npm install` để cài đặt các dependencies.
+- Nhấp đúp chuột vào file `install.bat` để nhanh chóng cài đặt các thành phần liên quan.
 - Nhấp đúp chuột vào file `start_here.bat` để nhanh chóng sử dụng ứng dụng. **Lưu ý** không được đóng cửa sổ `cmd.exe` vừa mở lên vì nó giúp duy trì ứng dụng chạy được. Các thông điệp được in ra cửa sổ `cmd.exe` đó là thông điệp của backend (server), có thể giúp ta theo dõi tiến độ của ứng dụng.
 
 # Hướng dẫn sử dụng:
