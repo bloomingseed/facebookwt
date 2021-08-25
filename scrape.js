@@ -7,7 +7,8 @@ class Scrawler{
     initBrowser(){
         return new Promise(async (resolve, reject) => {
             try{
-                const browser = await puppeteer.launch();
+                const browser = await puppeteer.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe'});
+                // const browser = await puppeteer.launch();
                 resolve(browser);
             } catch(e){
                 reject(e);
@@ -93,6 +94,7 @@ async function test(){
         'https://www.facebook.com/profile.php?id=100009489131753',
         'https://www.facebook.com/profile.php?id=100065490511573',
         'https://www.facebook.com/profile.php?id=100016075691791',
+        'https://www.facebook.com/profile.php?id=100030260986154',
         'https://www.facebook.com/ngocnam.nguyen.2402',
         'https://www.facebook.com/vui.nguyen.9250',
         'https://www.facebook.com/namha.nguyen.1042',

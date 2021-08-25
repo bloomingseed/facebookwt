@@ -24,12 +24,17 @@
      - Truy cập [trang chủ của NodeJS](https://nodejs.org/en/), sau đó ấn vào nút xanh lục có dòng chữ "Recommended For Most Users" để tải về.
      - Tải xong thì mở ra và cài đặt bình thường. Nếu không rành chỉ cần click Next tới hết là OK rồi.
      - Kiểm tra phiên bản NodeJS trong máy tính như ở trên. **Lưu ý** là cần phải mở cửa sổ `cmd.exe` mới thì mới có hiệu lực.
+- Mở cửa sổ cmd tại thư mục chứa tool và chạy lệnh `npm install` để cài đặt các dependencies.
 - Nhấp đúp chuột vào file `start_here.bat` để nhanh chóng sử dụng ứng dụng. **Lưu ý** không được đóng cửa sổ `cmd.exe` vừa mở lên vì nó giúp duy trì ứng dụng chạy được. Các thông điệp được in ra cửa sổ `cmd.exe` đó là thông điệp của backend (server), có thể giúp ta theo dõi tiến độ của ứng dụng.
 
 # Hướng dẫn sử dụng:
-- Sau khi truy cập vào ứng dụng, sẽ có cửa sổ trình duyệt nhỏ mở lên yêu cầu đăng nhập vào Facebook. Hãy đăng nhập bằng *tài khoản đã là admin của app Facebook [Pages Manager](https://developers.facebook.com/apps/201557361779080/roles/roles/)*.
+- Sau khi truy cập vào ứng dụng, sẽ có cửa sổ trình duyệt nhỏ mở lên yêu cầu đăng nhập vào Facebook. Hãy đăng nhập bằng *tài khoản đã là admin của app Facebook [Pages Manager](https://developers.facebook.com/apps/201557361779080/roles/roles/)* (Hủy chặn pop-up nếu giao diện đăng nhập Facebook bị chặn). Sau đó chọn 1 page cần gửi ảnh và xác nhận các permission.
 - Nhập vào Page ID của Page mà bạn muốn gửi ảnh tới.
   - Để tìm Page ID, truy cập Page mà bạn quản lý, sau đó tìm tới phần `About`. Tìm ở bên dưới sẽ có trường `Page ID`, bạn dán ID đó vào trường `Page ID` của ứng dụng.
 - Nhập vào danh sách các user ID (UID) hoặc username mà bạn cần crawl, mỗi UID/username cách nhau bởi 1 dấu xuống dòng (`\n`).
 - Nhập vào các tùy chọn khác nếu muốn.
 - Nhấn nút "Bắt đầu" thì ứng dụng sẽ crawl từng user lấy URL ảnh bìa, sau đó post nó lên Page, sau đó sẽ là thời gian chờ giữa các task, sau đó lại tiếp tục chạy như vậy cho tới khi hết, hoặc tới thời điểm dừng hoạt động như đã lựa chọn, hoặc người dùng nhấn nút "Hủy".
+
+# Notes:
+- Cách random UID: cứ sau khi thực hiện xong số task được config thì tự động mở 1 UID trong danh sách random UID, sau đó xóa UID đó khỏi danh sách random.
+- Nên sử dụng username thay vì UID vì lý do bảo mật của Facebook. E.g. nhập `letranduc.dut` thay vì `1093610843`.

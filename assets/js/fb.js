@@ -10,6 +10,10 @@ var apiConfig = {
 var pageInfo = {
     id:'109960724577650'
 }
+var userInfo={
+    access_token:'',
+    access_token_no_expire:''
+}
 
 function initFacebookApi(){
     window.fbAsyncInit = function() {
@@ -50,6 +54,7 @@ function statusChangeCallback(response){
         token = response.authResponse.accessToken;
         console.log('User Access Token: ',token);
         globalThis.authenticated = true;
+        globalThis.userInfo.access_token = token;
         getLongLivedUserAccessToken(token);
         // testGraphApi();
     } else{
@@ -109,14 +114,15 @@ function getLongLivedUserAccessToken(shortLivedUserAccessToken, callback){
         console.log(response);
         if(response){
             let token = response.access_token;
+            globalThis.userInfo.access_token_no_expire=token;
             console.log('Received long-lived user access token.');
-            getLongLivedPageAccessToken(token, callback);
         }
     })
 }
 
 function getLongLivedPageAccessToken(longLivedUserAccessToken, callback){
     console.log('getting long-lived page access token..');
+    // before this, request for page id
     let endpoint = `/${pageInfo.id}?fields=access_token&access_token=${longLivedUserAccessToken}`;
     FB.api(endpoint,'GET',function(response){
         console.log(response);

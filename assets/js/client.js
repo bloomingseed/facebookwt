@@ -1,3 +1,4 @@
+
 function parseForm(formElement){
     return new Promise(resolve=>{
         let inputs = [...formElement.querySelectorAll('input'),...formElement.querySelectorAll('textarea')];
@@ -29,6 +30,7 @@ function processInputs(randomUidList,uidList,indx){
         let msg = `Hiện đang là thời gian ngưng hoạt động. Tasks đã hoàn thành: ${taskConfig.count}.`;
         console.warn(msg);
         alert(msg);
+        return;
     }
     if(indx>=0 && indx<uidList.length){
         console.log(`Task number ${indx+1}/${uidList.length}...`);
@@ -48,7 +50,8 @@ function processInputs(randomUidList,uidList,indx){
         .catch(e=>console.error(e))
         .then(body=>{
             console.log(`Task #${indx+1}, cover photo link: `,body);
-            postImageUrl(FB,pageInfo,body);
+            if(body!='') postImageUrl(FB,pageInfo,body);
+            else console.log('Could not get wallpaper url. Skipping');
             taskConfig.count++;
             let progress = Math.floor(taskConfig.count*100/uidList.length);
             setProgress(progress);
@@ -113,8 +116,10 @@ form.addEventListener('submit',function(event){
         }
         console.log(uidList, randomUidList);
         if(authenticated){
-            alert('Task đang thực thi. Mở console của trình duyệt để theo dõi tiến trình (Ctrl+Shift+J).');
-            processInputs(randomUidList,uidList,0);
+            getLongLivedPageAccessToken(userInfo.access_token_no_expire,()=>{
+                alert('Task đang thực thi. Mở console của trình duyệt để theo dõi tiến trình (Ctrl+Shift+J).');
+                processInputs(randomUidList,uidList,0);
+            });
         } else{
             alert('Chưa xác minh Facebook, chưa thể thực hiện task. Hãy tải lại trang để tiến hành xác minh.');
         }

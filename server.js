@@ -4,7 +4,7 @@ const indexRouter = require('./routers/index.js');
 
 var {Scrawler} = require('./scrape.js');
 var scrawler = new Scrawler();
-scrawler.init();
+scrawler.init().then(()=>console.log("Scrawler initialized"), err=>console.log("Scrawler failed to initialize.",err));
 
 const app = express(); 
 app.scrawler = scrawler;
